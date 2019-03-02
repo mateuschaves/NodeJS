@@ -36,5 +36,29 @@ module.exports = {
         const product = await Product.create(req.body);
 
         return res.json(product);
-    }
+    },
+
+    /* 
+        METHOD: PUT
+
+        Atualiza um produto
+    */
+   async update(req, res){
+       const product = await Product.findByIdAndUpdate(req.params.id, req.body, { new: true });
+
+       return res.json(product);
+   },
+
+   /* 
+        METHOD: PUT
+
+        Atualiza um produto
+    */
+   async destroy(req, res){
+    await Product.findByIdAndDelete(req.params.id);
+
+    return res.json({
+        message: 'Produto removido com sucesso !'
+    });
+}
 }
